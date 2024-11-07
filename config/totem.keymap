@@ -46,7 +46,7 @@
             label = "HOMEROW_MODS";
             #binding-cells = <2>;
             flavor = "tap-preferred";
-            tapping-term-ms = <200>;
+            tapping-term-ms = <180>;
             quick-tap-ms = <125>;
             global-quick-tap;
             bindings =
