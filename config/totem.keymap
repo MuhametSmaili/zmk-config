@@ -117,16 +117,19 @@
         enter {
             bindings = <&kp ENTER>;
             key-positions = <0 1 2 3>;
+            layers = <0 4>;
         };
 
         caps_word {
             bindings = <&caps_word>;
             key-positions = <13 12 16 17>;
+            layers = <0>;
         };
 
         equal {
             bindings = <&kp EQUAL>;
             key-positions = <21 22>;
+            layers = <0>;
         };
     };
 
@@ -149,7 +152,7 @@
         &kp EXCL                &kp AT                    &kp HASH                  &kp DOLLAR                    &kp PERCENT    &kp CARET      &kp AMPERSAND                  &kp KP_ASTERISK            &kp SQT              &kp DQT
         &hml LEFT_CONTROL PIPE  &hml LEFT_ALT UNDERSCORE  &hml LEFT_GUI LEFT_BRACE  &hml LEFT_SHIFT LEFT_BRACKET  &kp SLASH      &kp BACKSLASH  &hmr LEFT_SHIFT RIGHT_BRACKET  &hmr LEFT_GUI RIGHT_BRACE  &hmr LEFT_ALT MINUS  &hmr LEFT_CONTROL COLON
 &trans  &kp TILDE               &kp EQUAL                 &kp GRAVE                 &kp SINGLE_QUOTE              &kp MINUS      &kp PLUS       &kp DOUBLE_QUOTES              &kp LESS_THAN              &kp GREATER_THAN     &kp QUESTION             &kp DOUBLE_QUOTES
-                                                          &trans                    &trans                        &trans         &trans         &trans                         &trans
+                                                          &trans                    &trans                        &mo 3          &trans         &trans                         &trans
             >;
         };
 
