@@ -149,7 +149,7 @@
         symbol_layer {
             display-name = "Sym";
             bindings = <
-        &kp EXCL                &kp AT                    &kp HASH                  &kp DOLLAR                    &kp PERCENT    &kp CARET      &kp AMPERSAND                  &kp KP_ASTERISK            &kp SQT              &kp DQT
+        &kp EXCL                &kp AT                    &kp HASH                  &kp DOLLAR                    &kp PERCENT    &kp CARET      &kp AMPERSAND                  &kp KP_ASTERISK            &kp LPAR             &kp RIGHT_PARENTHESIS
         &hml LEFT_CONTROL PIPE  &hml LEFT_ALT UNDERSCORE  &hml LEFT_GUI LEFT_BRACE  &hml LEFT_SHIFT LEFT_BRACKET  &kp SLASH      &kp BACKSLASH  &hmr LEFT_SHIFT RIGHT_BRACKET  &hmr LEFT_GUI RIGHT_BRACE  &hmr LEFT_ALT MINUS  &hmr LEFT_CONTROL COLON
 &trans  &kp TILDE               &kp EQUAL                 &kp GRAVE                 &kp SINGLE_QUOTE              &kp MINUS      &kp PLUS       &kp DOUBLE_QUOTES              &kp LESS_THAN              &kp GREATER_THAN     &kp QUESTION             &kp DOUBLE_QUOTES
                                                           &trans                    &trans                        &mo 3          &trans         &trans                         &trans
