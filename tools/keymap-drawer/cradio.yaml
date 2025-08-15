@@ -1,8 +1,8 @@
 layout: {zmk_keyboard: cradio}
 layers:
   BASE:
-  - Q
-  - W
+  - '&os_kp Q A'
+  - '&set_os 1'
   - E
   - R
   - T

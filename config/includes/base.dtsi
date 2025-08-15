@@ -16,6 +16,7 @@
 
 #include "mouse.dtsi"
 #include "combos.dtsi"
+#include "os_keycodes.dtsi"
 
 &caps_word { continue-list = <UNDERSCORE BACKSPACE DELETE SPACE MINUS DEL N1 N2 N3 N4 N5 N6 N7 N8 N9 N0>; };
 
@@ -132,6 +133,17 @@
             bindings = <&bootloader>, <&sys_reset>; // Press-> sys_reset, hold-> bootloader
         };
 
+        set_os: set_os {
+            compatible = "zmk,behavior-set-os";
+            #binding-cells = <1>;
+        };
+
+        os_kp: os_kp {
+            compatible = "zmk,behavior-os-kp";
+            default = "linux";
+            #binding-cells = <2>;
+        };
+
     };
 
     keymap {
@@ -141,7 +153,7 @@
             display-name = "BASE";
             bindings = <LAYER_FROM36( \
 // ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮   ╭───────────────┬───────────────┬───────────────┬─────────────┬───────────────╮
-     &kp Q,        &kp W,        &kp E,        &kp R,        &kp T,            &kp Y,           &kp U,          &kp I,        &kp O,           &kp P,      \
+     &os_kp Q A,    &set_os OS_MAC,        &kp E,        &kp R,        &kp T,            &kp Y,           &kp U,          &kp I,        &kp O,           &kp P,      \
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├───────────────┼───────────────┼───────────────┼─────────────┼───────────────┤
      &hml LCTRL A, &hml LALT S,  &hml LGUI D,  &lsm LSHFT F, &kp G,            &kp H,           &rsm RSHFT J, &hmr RGUI K,    &hmr LALT L,  &hmr RCTRL SEMI,\
 // ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤   ├───────────────┼───────────────┼───────────────┼─────────────┼───────────────┤
