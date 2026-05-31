@@ -45,8 +45,8 @@ This config uses a few external ZMK modules in addition to upstream ZMK itself.
 
 - `BASE`: QWERTY, home-row mods, thumb-layer access, and the main daily typing layer.
 - `SYM`: symbols and punctuation placed in familiar QWERTY-style positions.
-- `NAV`: navigation, numbers, word movement, line movement, delete, and paging.
-- `FNC`: function keys, media controls, and the utility layer where I trigger status and OS-selection combos.
+- `NAV`: numbers on the top row, text navigation and editing on the home row, and global shortcuts on the bottom row.
+- `FNC`: function keys, media controls, mouse toggle, and the utility layer where I trigger status and OS-selection combos.
 - `SYS`: Bluetooth profile control, output switching, reset, bootloader, and ZMK Studio unlock.
 - `MSE`: mouse movement, scrolling, clicks, and drag helpers.
 - `MSE_FAST`: a faster temporary mouse/scroll layer.
@@ -60,9 +60,9 @@ This config uses a few external ZMK modules in addition to upstream ZMK itself.
 ### Base layer philosophy
 
 - The alpha layout stays intentionally close to standard QWERTY.
-- Numbers stay on the top row instead of moving to a more abstract arrangement.
+- Numbers stay on the top row instead of moving to a more abstract arrangement, and also double as indexed navigation keys.
 - Symbols try to preserve familiar positions where possible.
-- Vim-style directional movement is kept on the navigation layer.
+- Vim-style directional movement is kept on the navigation layer, with the bottom row reserved for non-text shortcuts I use often.
 
 ### Home-row mods and thumbs
 
@@ -80,7 +80,7 @@ Current combos include:
 - control: `Escape`, `Enter`, `Caps Word`, sticky shift
 - casing: `snake_case`, `kebab-case`, `camelCase`
 - navigation aid: fast scroll combos
-- utility: `Soft Off`, battery indicator, connection indicator, mouse toggle
+- utility: `Soft Off`, battery indicator, and connection indicator
 - OS switching: dedicated macOS and Linux combos on `FNC`
 
 ## Build Profiles and Flash Targets
