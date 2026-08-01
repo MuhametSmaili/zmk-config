@@ -106,22 +106,22 @@ layers:
   - {t: ▽, type: trans}
   - {type: held}
   FNC:
-  - F1
-  - F2
-  - F3
-  - F4
-  - F5
-  - F6
-  - F7
+  - {t: F1, h: '$$mdi:bluetooth$$ 1'}
+  - {t: F2, h: '$$mdi:bluetooth$$ 2'}
+  - {t: F3, h: '$$mdi:bluetooth$$ 3'}
+  - {t: F4, h: '$$mdi:bluetooth$$ 4'}
+  - {t: F5, h: '$$mdi:bluetooth-connect$$'}
+  - {t: F6, h: '$$mdi:usb$$'}
+  - {t: F7, h: Studio Unlock}
   - F8
   - F9
-  - F10
+  - {t: F10, h: '$$mdi:bluetooth-off$$'}
   - $$phosphor:regular/control$$
   - $$phosphor:regular/option$$
   - $$phosphor:regular/command$$
   - $$phosphor:regular/arrow-fat-up$$
-  - F11
-  - F12
+  - {t: F11, h: Reset}
+  - {t: F12, h: Boot}
   - $$phosphor:regular/arrow-fat-up$$
   - $$phosphor:regular/command$$
   - $$phosphor:regular/option$$
@@ -137,11 +137,11 @@ layers:
   - $$mdi:skip-forward$$
   - $$mdi:volume-high$$
   - {type: held}
-  - Toggle SYS
+  - ''
   - ''
   - {type: held}
   MSE: ['', Back Click, Middle Click, Forward Click, '', '', Scroll ↑, Mouse ↑, '', '', Scroll ←, '$$phosphor:regular/mouse-left-click$$', Scroll ↓, '$$phosphor:regular/mouse-right-click$$',
-    Scroll →, '', Mouse ←, Mouse ↓, Mouse →, '', '', Drag On, Drag Off, '', '', '', '', '', '', '', MSF, '$$phosphor:regular/mouse-left-click$$', '$$phosphor:regular/mouse-right-click$$',
+    Scroll →, '', Mouse ←, Mouse ↓, Mouse →, '', '', '', '', '', '', '', '', '', '', '', MSF, '$$phosphor:regular/mouse-left-click$$', '$$phosphor:regular/mouse-right-click$$',
     Toggle MSE]
   MSF:
   - ''
@@ -165,8 +165,8 @@ layers:
   - Mouse →→
   - ''
   - ''
-  - Drag On
-  - Drag Off
+  - ''
+  - ''
   - ''
   - ''
   - ''
@@ -178,41 +178,6 @@ layers:
   - $$phosphor:regular/mouse-left-click$$
   - $$phosphor:regular/mouse-right-click$$
   - ''
-  SYS:
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - BT 1
-  - '&bt_lin'
-  - BT 3
-  - BT 4
-  - {t: Reset, h: Boot}
-  - {t: Reset, h: Boot}
-  - Studio Unlock
-  - Out USB
-  - Out BT
-  - BT Clear
-  - ''
-  - Toggle SYS
-  - ''
-  - Base
 combos:
 - p: [12, 13]
   k: Delete

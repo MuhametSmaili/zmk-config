@@ -13,7 +13,6 @@
 #define FNC 3
 #define MSE 4
 #define MSE_FAST 5
-#define SYS 6
 
 #define MEH(k) LC(LA(LS(k)))
 #define MEH_MOD LA(LS(LCTRL))
@@ -26,10 +25,46 @@
 
 / {
     macros {
+        sys_bt_0: sys_bt_0 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 0>;
+        };
+
         bt_lin: bt_lin {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&bt BT_SEL 1>, <&os_sel OS_LIN>;
+        };
+
+        sys_bt_2: sys_bt_2 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 2>;
+        };
+
+        sys_bt_3: sys_bt_3 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_SEL 3>;
+        };
+
+        sys_out_usb: sys_out_usb {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&out OUT_USB>;
+        };
+
+        sys_out_ble: sys_out_ble {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&out OUT_BLE>;
+        };
+
+        sys_bt_clear: sys_bt_clear {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&bt BT_CLR>;
         };
     };
 
@@ -120,12 +155,84 @@
             //hold-trigger-on-release;
         };
 
-        rst_boot: rst_boot {
+        f1_sys: f1_sys {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
-            tapping-term-ms = <800>;
+            tapping-term-ms = <3000>;
             flavor = "tap-preferred";
-            bindings = <&bootloader>, <&sys_reset>; // Press-> sys_reset, hold-> bootloader
+            bindings = <&sys_bt_0>, <&kp>;
+        };
+
+        f2_sys: f2_sys {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <3000>;
+            flavor = "tap-preferred";
+            bindings = <&bt_lin>, <&kp>;
+        };
+
+        f3_sys: f3_sys {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <3000>;
+            flavor = "tap-preferred";
+            bindings = <&sys_bt_2>, <&kp>;
+        };
+
+        f4_sys: f4_sys {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <3000>;
+            flavor = "tap-preferred";
+            bindings = <&sys_bt_3>, <&kp>;
+        };
+
+        f5_sys: f5_sys {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <3000>;
+            flavor = "tap-preferred";
+            bindings = <&sys_out_ble>, <&kp>;
+        };
+
+        f6_sys: f6_sys {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <3000>;
+            flavor = "tap-preferred";
+            bindings = <&sys_out_usb>, <&kp>;
+        };
+
+        f7_sys: f7_sys {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <3000>;
+            flavor = "tap-preferred";
+            bindings = <&studio_unlock>, <&kp>;
+        };
+
+        f10_sys: f10_sys {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <3000>;
+            flavor = "tap-preferred";
+            bindings = <&sys_bt_clear>, <&kp>;
+        };
+
+        f11_sys: f11_sys {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <3000>;
+            flavor = "tap-preferred";
+            bindings = <&sys_reset>, <&kp>;
+        };
+
+        f12_sys: f12_sys {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <3000>;
+            flavor = "tap-preferred";
+            bindings = <&bootloader>, <&kp>;
         };
 
     };
@@ -182,13 +289,13 @@
             display-name = "FNC";
             bindings = <LAYER_FROM36( \
 // ╭────────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────╮   ╭─────────────────┬─────────────────┬───────────────┬───────────────┬────────────────────╮
-     &kp F1,               &kp F2,               &kp F3,               &kp F4,             &kp F5,                 &kp F6,           &kp F7,          &kp F8,          &kp F9,          &kp F10,         \
+     &f1_sys 0 F1,         &f2_sys 0 F2,         &f3_sys 0 F3,         &f4_sys 0 F4,       &f5_sys 0 F5,           &f6_sys 0 F6,     &f7_sys 0 F7,   &kp F8,          &kp F9,          &f10_sys 0 F10, \
 // ├────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤   ├─────────────────┼─────────────────┼───────────────┼───────────────┼────────────────────┤
-     &kp LCTRL,            &kp LALT,             &kp LGUI,             &kp LSHFT,         &kp F11,                 &kp F12,          &kp LSHFT,       &kp LGUI,        &kp LALT,        &kp LCTRL,       \
+     &kp LCTRL,            &kp LALT,             &kp LGUI,             &kp LSHFT,         &f11_sys 0 F11,           &f12_sys 0 F12,   &kp LSHFT,       &kp LGUI,        &kp LALT,        &kp LCTRL,       \
 // ├────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤   ├─────────────────┼─────────────────┼───────────────┼───────────────┼────────────────────┤
      &hp C_MUTE C_VOL_DN, &kp C_PREV,            &tog MSE,            &kp PSCRN,         &kp C_BRI_DN,            &kp C_BRI_UP,      &none,           &kp C_PP,        &kp C_NEXT,      &kp C_VOL_UP,    \
 // ╰────────────────────┴────────────────────┴────────────────────┼────────────────────┼────────────────────┤   ├─────────────────┴─────────────────┴───────────────┴───────────────┴────────────────────╯
-                                                &trans,               &none,               &tog SYS,               &none,            &none,           &trans         \
+                                                &trans,               &none,               &none,                  &none,            &none,           &trans         \
 //                                           ╰────────────────────┴────────────────────┴────────────────────╯   ╰─────────────────┴─────────────────┴────────────────╯
          )>;
       };
@@ -222,21 +329,6 @@
 //                                      ╰────────────────────┴───────────────┴────────────────────╯   ╰─────────────────┴────────────────────┴────────────────────╯
          )>;
         };
-
-        system_layer {
-            display-name = "SYS";
-            bindings = <LAYER_FROM36( \
-// ╭────────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────╮   ╭─────────────────┬─────────────────┬───────────────┬───────────────┬────────────────────╮
-     &none,               &none,               &none,               &none,               &none,                  &none,             &none,           &none,          &none,          &none,          \
-// ├────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤   ├─────────────────┼─────────────────┼───────────────┼───────────────┼────────────────────┤
-     &none,               &none,               &none,               &none,               &none,                  &none,             &none,           &none,          &none,          &none,          \
-// ├────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤   ├─────────────────┼─────────────────┼───────────────┼───────────────┼────────────────────┤
-     &bt BT_SEL 0,        &bt_lin,             &bt BT_SEL 2,        &bt BT_SEL 3,        &rst_boot 0 0,          &rst_boot 0 0,     &studio_unlock,  &out OUT_USB,   &out OUT_BLE,   &bt BT_CLR,     \
-// ╰────────────────────┴────────────────────┴────────────────────┼────────────────────┼────────────────────┤   ├─────────────────┴─────────────────┴───────────────┴───────────────┴────────────────────╯
-                                                &trans,              &none,               &tog SYS,              &none,            &to BASE,        &trans         \
-//                                           ╰────────────────────┴────────────────────┴────────────────────╯   ╰─────────────────┴─────────────────┴────────────────╯
-         )>;
-      };
     };
 
 };

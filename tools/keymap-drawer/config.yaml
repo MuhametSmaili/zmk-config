@@ -180,6 +180,13 @@ parse_config:
   raw_binding_map:
     '&sys_reset': Reset
     '&bootloader': Boot
+    '&sys_bt_0': '$$mdi:bluetooth$$ 1'
+    '&bt_lin': '$$mdi:bluetooth$$ 2'
+    '&sys_bt_2': '$$mdi:bluetooth$$ 3'
+    '&sys_bt_3': '$$mdi:bluetooth$$ 4'
+    '&sys_out_ble': '$$mdi:bluetooth-connect$$'
+    '&sys_out_usb': '$$mdi:usb$$'
+    '&sys_bt_clear': '$$mdi:bluetooth-off$$'
     '&caps_word': Caps Word
     '&ind_bat': Show Batt
     '&ind_con': Show Conn

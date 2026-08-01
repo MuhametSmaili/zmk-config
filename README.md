@@ -46,14 +46,13 @@ This config uses a few external ZMK modules in addition to upstream ZMK itself.
 - `BASE`: QWERTY, home-row mods, thumb-layer access, and the main daily typing layer.
 - `SYM`: symbols and punctuation placed in familiar QWERTY-style positions.
 - `NAV`: numbers on the top row, text navigation and editing on the home row, and global shortcuts on the bottom row.
-- `FNC`: function keys, media controls, mouse toggle, and the utility layer where I trigger status and OS-selection combos.
-- `SYS`: Bluetooth profile control, output switching, reset, bootloader, and ZMK Studio unlock.
+- `FNC`: function keys, media controls, mouse toggle, and long-press system controls, plus the utility layer where I trigger status and OS-selection combos.
 - `MSE`: mouse movement, scrolling, clicks, and drag helpers.
 - `MSE_FAST`: a faster temporary mouse/scroll layer.
 
 `FNC` is a tri-layer that appears when both `SYM` and `NAV` are active.
 
-`SYS` is intentionally hidden behind `FNC` so reset, Bluetooth, and output controls are harder to trigger by accident.
+System controls are intentionally hidden behind 3-second holds on function keys, so normal taps still send function keys while Bluetooth, reset, output, and Studio actions remain hard to trigger accidentally. Hold `F1`–`F4` for Bluetooth profiles 0–3, `F5` for BLE output, `F6` for USB output, `F7` for ZMK Studio unlock, `F10` to clear the current Bluetooth profile, `F11` to reset, and `F12` for the bootloader.
 
 ## Behavior Choices
 
