@@ -6,13 +6,13 @@
 ╰───────╮ LH2 LH1 LH0 │ RH0 RH1 RH2 ╭───────╯
         ╰─────────────┴─────────────╯       */
 
-#define COMBO(NAME, BINDINGS, KEYPOS, LAYERS, TERM, QUICKTAP, ...) \
+#define COMBO(NAME, BINDINGS, KEYPOS, LAYERS, TERM, PRIOR_IDLE_MS, ...) \
   combo_##NAME { \
       timeout-ms = <TERM>; \
       bindings = <BINDINGS>; \
       key-positions = <KEYPOS>; \
       layers = <LAYERS>; \
-      require-prior-idle-ms = <QUICKTAP>; \
+      require-prior-idle-ms = <PRIOR_IDLE_MS>; \
       __VA_ARGS__ \
   };
 
@@ -21,24 +21,25 @@
     compatible = "zmk,combos";
 
     COMBO(delete,            &kp DELETE,         LM2 LM1,            BASE,              40, 100)
-    COMBO(copy,              &kp LG(C),          LB3 LB2,            BASE,              50, 120)
-    COMBO(paste,             &kp LG(V),          LB2 LB1,            BASE,              50, 120)
-    COMBO(scroll_up,         &msc SCRL_UP,       RT1 RT2 RT3,        BASE MSE MSE_FAST, 50, 180, slow-release;)
+    COMBO(copy,              &ok_copy,           LB3 LB2,            BASE,              50, 120)
+    COMBO(paste,             &ok_paste,          LB2 LB1,            BASE,              50, 120)
+    COMBO(scroll_up,         &msc SCRL_UP,       RT1 RT2 RT3,        BASE MSE,          50, 180, slow-release;)
     COMBO(escape,            &kp ESC,            RM1 RM2,            BASE,              40, 0)
     COMBO(enter,             &kp ENTER,          LM4 LM3 LM2,        BASE,              40, 220, slow-release;)
     COMBO(caps_word,         &caps_word,         LM2 LM1 RM1 RM2,    BASE,              50, 0)
-    COMBO(cut,               &kp LG(X),          LB3 LB1,            BASE,              40, 120)
-    COMBO(scroll_down,       &msc SCRL_DOWN,     RB1 RB2 RB3,        BASE MSE MSE_FAST, 40, 180, slow-release;)
+    COMBO(cut,               &ok_cut,            LB3 LB1,            BASE,              40, 120)
+    COMBO(scroll_down,       &msc SCRL_DOWN,     RB1 RB2 RB3,        BASE MSE,          40, 180, slow-release;)
     COMBO(escape_left,       &kp ESC,            LT4 LT3,            BASE,              40, 200, slow-release;)
-    COMBO(softoff,           &soft_off,          LM0 RM0,            FNC,               1000, 200)
+    COMBO(softoff,           &soft_off_hold 0 0, LM0 RM0,            FNC,               1000, 200)
     COMBO(indbat,            &ind_bat,           LT2 RT2,            FNC,               100, 200)
     COMBO(indcon,            &ind_con,           LT1 RT1,            FNC,               100, 200)
     COMBO(sticky_shift,      &sk LSHFT,          LM2 RM2,             BASE,              55, 120)
-    COMBO(snake_case,        &case_snake,        LB1 RB1,             BASE,              45, 150)
-    COMBO(kebab_case,        &case_kebab,        LM1 RM1,             BASE,              45, 150)
-    COMBO(camel_case,        &case_camel,        LT1 RT1,             BASE,              45, 150)
+    // BASE-only, 45 ms chord window + 400 ms hold. Short chords consume the letters.
+    COMBO(snake_case,        &case_snake_hold 0 0, LB1 RB1,           BASE,              45, 150)
+    COMBO(kebab_case,        &case_kebab_hold 0 0, LM1 RM1,           BASE,              45, 150)
+    COMBO(camel_case,        &case_camel_hold 0 0, LT1 RT1,           BASE,              45, 150)
     COMBO(os_mac,            &os_sel OS_MAC,     LT4 LT3 LT2,         FNC,               80, 200)
     COMBO(os_linux,          &os_sel OS_LIN,     RT2 RT3 RT4,         FNC,               80, 200)
-    COMBO(tog_mse_layer,     &tog MSE,           LT4 LT3,            MSE MSE_FAST,      40, 200, slow-release;)
+    COMBO(tog_mse_layer,     &tog MSE,           LT4 LT3,            MSE,               40, 200, slow-release;)
   };
 };

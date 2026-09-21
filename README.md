@@ -20,11 +20,12 @@ The goal is not to build the most exotic layout possible. It is a pragmatic 34-k
 
 If you want to understand the repo quickly, read the files in this order:
 
-1. `config/includes/base.dtsi` for the shared layers, hold-taps, macros, and the main keymap.
-2. `config/includes/oskey.dtsi` for the Linux/macOS-aware modifiers and navigation helpers.
-3. `config/includes/combos.dtsi` for combos.
-4. `config/includes/mouse.dtsi` for mouse tuning.
-5. `build.yaml` for the actual flash targets.
+1. `config/includes/base.dtsi` for the shared layers, system macros, and the main keymap.
+2. `config/includes/hold-taps.dtsi` for the shared hold-tap definitions, timing constants, and helper macros.
+3. `config/includes/oskey.dtsi` for the Linux/macOS-aware modifiers and navigation helpers.
+4. `config/includes/combos.dtsi` for combos.
+5. `config/includes/mouse.dtsi` for mouse tuning.
+6. `build.yaml` for the actual flash targets.
 
 Notes:
 
@@ -35,24 +36,25 @@ Notes:
 
 This config uses a few external ZMK modules in addition to upstream ZMK itself.
 
-| Module | Small description | Why I use it here |
-| --- | --- | --- |
-| [`zmk-case-mode`](https://github.com/MSmaili/zmk-case-mode) | Case-mode behavior for typing identifiers with normal spaces. | I use it for `snake_case`, `camelCase`, and `kebab-case` combos on the base layer so coding-style names are easier on a 34-key board. |
-| [`oskey`](https://github.com/mentaldesk/oskey) | OS-aware key behavior for Linux/macOS shortcut differences. | I use it for swapped `Ctrl`/`Cmd` home-row mods, word movement, line movement, and delete-word behavior without maintaining separate keymaps. |
-| [`zmk-rgbled-widget`](https://github.com/caksoylar/zmk-rgbled-widget) | RGB LED status indicator module. | I use it for battery and connection indicators on builds that support an RGB LED. |
+| Module                                                                | Small description                                             | Why I use it here                                                                                                                             |
+| --------------------------------------------------------------------- | ------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`zmk-case-mode`](https://github.com/MSmaili/zmk-case-mode)           | Case-mode behavior for typing identifiers with normal spaces. | I use it for `snake_case`, `camelCase`, and `kebab-case` through hold-only combos on `BASE`.                                                  |
+| [`oskey`](https://github.com/mentaldesk/oskey)                        | OS-aware key behavior for Linux/macOS shortcut differences.   | I use it for swapped `Ctrl`/`Cmd` home-row mods, word movement, line movement, and delete-word behavior without maintaining separate keymaps. |
+| [`zmk-rgbled-widget`](https://github.com/caksoylar/zmk-rgbled-widget) | RGB LED status indicator module.                              | I use it for battery and connection indicators on builds that support an RGB LED.                                                             |
 
 ## Layer Model
 
 - `BASE`: QWERTY, home-row mods, thumb-layer access, and the main daily typing layer.
 - `SYM`: symbols and punctuation placed in familiar QWERTY-style positions.
 - `NAV`: numbers on the top row, text navigation and editing on the home row, and global shortcuts on the bottom row.
-- `FNC`: function keys, media controls, mouse toggle, and long-press system controls, plus the utility layer where I trigger status and OS-selection combos.
-- `MSE`: mouse movement, scrolling, clicks, and drag helpers.
-- `MSE_FAST`: a faster temporary mouse/scroll layer.
+- `FNC`: function keys, media controls, mouse toggle, and long-press system controls, plus status and OS-selection combos.
+- `MSE`: mouse movement, scrolling, clicks, and bottom-row modifiers.
 
 `FNC` is a tri-layer that appears when both `SYM` and `NAV` are active.
 
-System controls are intentionally hidden behind 3-second holds on function keys, so normal taps still send function keys while Bluetooth, reset, output, and Studio actions remain hard to trigger accidentally. Hold `F1`–`F4` for Bluetooth profiles 0–3, `F5` for BLE output, `F6` for USB output, `F7` for ZMK Studio unlock, `F10` to clear the current Bluetooth profile, `F11` to reset, and `F12` for the bootloader.
+System controls are intentionally hidden behind 3-second holds on function keys, so normal taps still send function keys while Bluetooth, reset, output, and Studio actions remain hard to trigger accidentally. Hold `F1`–`F4` for Bluetooth profiles 0–3, `F5` for BLE output, `F6` for USB output, `F7` for ZMK Studio unlock, `F10` to clear the current Bluetooth profile, `F11` to reset, and `F12` for the bootloader. Holding `F2` intentionally selects the Linux host (Bluetooth profile 1, shown as BT 2) **and** switches OS mode to Linux. Other profile selections leave OS mode unchanged; use the dedicated OS-selection combos when needed.
+
+For Soft Off, hold the `F11`+`F12` combo (base positions `G`+`H`) together for 3 seconds on `FNC`. Brief taps do nothing; the long hold powers off without needing a key release. Volume up/down repeat when held; mute has its own key on `FNC` at the base `M` position.
 
 ## Behavior Choices
 
@@ -71,16 +73,51 @@ System controls are intentionally hidden behind 3-second holds on function keys,
 
 ### Editing and utility combos
 
-Combos are used for actions that are frequent enough to deserve a shortcut but not important enough to consume a dedicated key.
+Combos provide shortcuts without consuming dedicated keys.
 
 Current combos include:
 
-- editing: `Delete`, `Cut`, `Copy`, `Paste`
+- editing: `Delete`, OS-aware `Cut`, `Copy`, `Paste`
 - control: `Escape`, `Enter`, `Caps Word`, sticky shift
-- casing: `snake_case`, `kebab-case`, `camelCase`
-- navigation aid: fast scroll combos
+- casing: `snake_case`, `kebab-case`, `camelCase` on `BASE`, each with a 400 ms hold
+- navigation aid: scroll combos
 - utility: `Soft Off`, battery indicator, and connection indicator
 - OS switching: dedicated macOS and Linux combos on `FNC`
+
+`FNC` uses the same OS-aware modifier order as `BASE`. Its screenshot key sends `Cmd+Shift+4` on macOS and `PrintScreen` on Linux/Windows.
+
+### NAV Leader shortcut
+
+On `NAV`, the base comma key sends `Ctrl+Alt+Shift+Space` to activate my Hammerspoon leader key. This requires the matching Hammerspoon configuration on the host. It is not a ZMK leader mode.
+
+### Case modes
+
+On `BASE`, hold one of these combos. No layer thumb is needed:
+
+| Combo     | Mode         |
+| --------- | ------------ |
+| `V` + `M` | `snake_case` |
+| `F` + `J` | `kebab-case` |
+| `R` + `U` | `camelCase`  |
+
+Press the two combo keys within 45 ms. Hold both until 400 ms after the first press. Then release the combo before typing. Releasing either combo key before the hold completes cancels activation.
+
+A recognized short chord does not activate a case mode, but it still consumes both letters. The hold prevents accidental mode changes, not missing letters from accidental chords.
+
+`R` + `U` on `FNC` still shows connection status. The shared hold duration is `CASE_HOLD_MS` in `config/includes/hold-taps.dtsi`.
+
+### Mouse modifiers
+
+On `MSE`, the base positions `Z`/`X`/`C`/`V` provide plain held modifiers, matching the left home-row modifier order:
+
+| Base position | macOS mode | Windows/Linux mode  |
+| ------------- | ---------- | ------------------- |
+| `Z`           | Ctrl       | GUI (Windows/Super) |
+| `X`           | Option     | Alt                 |
+| `C`           | Cmd        | Ctrl                |
+| `V`           | Shift      | Shift               |
+
+Hold a modifier while clicking or moving the pointer. These keys have no tap/hold delay. Mouse movement, scrolling, clicks, and exits remain unchanged. The right bottom row stays free for the existing scroll-down combo.
 
 ## Build Profiles and Flash Targets
 

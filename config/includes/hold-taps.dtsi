@@ -1,0 +1,116 @@
+#define CASE_HOLD_MS 400
+
+// Keep the literal # outside the function-like macro (CPP stringification).
+#define HOLD_TAP_CELLS #binding-cells
+#define GUARDED_HOLD(NAME, ACTION, TAP, MS) \
+    NAME: NAME { \
+        compatible = "zmk,behavior-hold-tap"; \
+        HOLD_TAP_CELLS = <2>; \
+        tapping-term-ms = <MS>; \
+        flavor = "tap-preferred"; \
+        bindings = <ACTION>, <TAP>; \
+    };
+
+#define HOLD_ONLY(NAME, ACTION, MS) \
+    GUARDED_HOLD(NAME, ACTION, &none, MS)
+
+#define SYSTEM_HOLD(NAME, ACTION) \
+    GUARDED_HOLD(NAME, ACTION, &kp, 3000)
+
+/ {
+    behaviors {
+        hmr: hmr {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <230>;
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <130>;
+            flavor = "balanced";
+            hold-trigger-key-positions = <KEYS_L THUMBS>;
+            hold-trigger-on-release;
+        };
+
+        hml: hml {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <230>;
+            quick-tap-ms = <155>;
+            require-prior-idle-ms = <130>;
+            flavor = "balanced";
+            hold-trigger-key-positions = <KEYS_R THUMBS>;
+            hold-trigger-on-release;
+        };
+
+        rth: rthumb {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&mo>, <&kp>;
+            flavor = "hold-preferred";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <130>;
+        };
+
+        lth: lthumb {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&mo>, <&kp>;
+            flavor = "hold-preferred";
+            #binding-cells = <2>;
+            tapping-term-ms = <230>;
+            quick-tap-ms = <140>;
+        };
+
+        hp: hold_priority {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&kp>, <&kp>;
+            flavor = "hold-preferred";
+            #binding-cells = <2>;
+            tapping-term-ms = <230>;
+            quick-tap-ms = <150>;
+        };
+
+        HOLD_ONLY(soft_off_hold,   &sys_soft_off, 3000)
+        HOLD_ONLY(case_snake_hold, &case_snake,   CASE_HOLD_MS)
+        HOLD_ONLY(case_kebab_hold, &case_kebab,   CASE_HOLD_MS)
+        HOLD_ONLY(case_camel_hold, &case_camel,   CASE_HOLD_MS)
+
+        lsm: left_shift_mode {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&kp>, <&kp>;
+            flavor = "hold-preferred";
+            #binding-cells = <2>;
+            tapping-term-ms = <190>;
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <120>;
+            hold-trigger-key-positions = <KEYS_R LH0 RH0>;
+            //hold-trigger-on-release;
+        };
+
+        rsm: right_shift_mode {
+            compatible = "zmk,behavior-hold-tap";
+            bindings = <&kp>, <&kp>;
+            flavor = "hold-preferred";
+            #binding-cells = <2>;
+            tapping-term-ms = <190>;
+            quick-tap-ms = <150>;
+            require-prior-idle-ms = <130>;
+            hold-trigger-key-positions = <KEYS_L LH0 RH0>;
+            //hold-trigger-on-release;
+        };
+
+        SYSTEM_HOLD(f1_sys,  &sys_bt_0)
+        SYSTEM_HOLD(f2_sys,  &bt_lin)
+        SYSTEM_HOLD(f3_sys,  &sys_bt_2)
+        SYSTEM_HOLD(f4_sys,  &sys_bt_3)
+        SYSTEM_HOLD(f5_sys,  &sys_out_ble)
+        SYSTEM_HOLD(f6_sys,  &sys_out_usb)
+        SYSTEM_HOLD(f7_sys,  &studio_unlock)
+        SYSTEM_HOLD(f10_sys, &sys_bt_clear)
+        SYSTEM_HOLD(f11_sys, &sys_reset)
+        SYSTEM_HOLD(f12_sys, &bootloader)
+
+    };
+};

@@ -26,20 +26,16 @@
 
 / {
     macros {
-        del_line_win: del_line_win {
+        // Windows and Linux share the same Shift+Home, Backspace sequence.
+        del_line_home: del_line_home {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <30>;
             tap-ms = <30>;
-            bindings = <&macro_press &kp LSHFT>, <&macro_tap &kp HOME>, <&macro_release &kp LSHFT>, <&kp BSPC>;
-        };
-
-        del_line_lin: del_line_lin {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <30>;
-            tap-ms = <30>;
-            bindings = <&macro_press &kp LSHFT>, <&macro_tap &kp HOME>, <&macro_release &kp LSHFT>, <&kp BSPC>;
+            bindings = <&macro_press &kp LSHFT>,
+                       <&macro_tap &kp HOME>,
+                       <&macro_release &kp LSHFT>,
+                       <&macro_tap &kp BSPC>;
         };
     };
 
@@ -85,6 +81,30 @@
             bindings = <&kp LCTRL>, <&kp LGUI>, <&kp LCTRL>;
         };
 
+        ok_copy: os_key_copy {
+            compatible = "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            bindings = <&kp LC(C)>, <&kp LG(C)>, <&kp LC(C)>;
+        };
+
+        ok_cut: os_key_cut {
+            compatible = "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            bindings = <&kp LC(X)>, <&kp LG(X)>, <&kp LC(X)>;
+        };
+
+        ok_paste: os_key_paste {
+            compatible = "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            bindings = <&kp LC(V)>, <&kp LG(V)>, <&kp LC(V)>;
+        };
+
+        ok_screenshot: os_key_screenshot {
+            compatible = "zmk,behavior-os-key";
+            #binding-cells = <0>;
+            bindings = <&kp PSCRN>, <&kp LG(LS(N4))>, <&kp PSCRN>;
+        };
+
         ok_del_prev_word: os_key_del_prev_word {
             compatible = "zmk,behavior-os-key";
             #binding-cells = <0>;
@@ -118,7 +138,7 @@
         ok_del_line: os_key_del_line {
             compatible = "zmk,behavior-os-key";
             #binding-cells = <0>;
-            bindings = <&del_line_win>, <&kp LG(BSPC)>, <&del_line_lin>;
+            bindings = <&del_line_home>, <&kp LG(BSPC)>, <&del_line_home>;
         };
 
         hmr_inner: hmr_inner {

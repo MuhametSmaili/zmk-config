@@ -116,23 +116,23 @@ layers:
   - F8
   - F9
   - {t: F10, h: '$$mdi:bluetooth-off$$'}
-  - $$phosphor:regular/control$$
+  - Ctrl/Cmd
   - $$phosphor:regular/option$$
-  - $$phosphor:regular/command$$
+  - Cmd/Ctrl
   - $$phosphor:regular/arrow-fat-up$$
   - {t: F11, h: Reset}
   - {t: F12, h: Boot}
   - $$phosphor:regular/arrow-fat-up$$
-  - $$phosphor:regular/command$$
+  - Cmd/Ctrl
   - $$phosphor:regular/option$$
-  - $$phosphor:regular/control$$
-  - {t: '$$mdi:volume-medium$$', h: '$$mdi:volume-off$$'}
+  - Ctrl/Cmd
+  - $$mdi:volume-medium$$
   - $$mdi:skip-backward$$
   - Toggle MSE
-  - Print Scrn
+  - Screenshot
   - Bright -
   - Bright +
-  - ''
+  - $$mdi:volume-off$$
   - $$mdi:play-pause$$
   - $$mdi:skip-forward$$
   - $$mdi:volume-high$$
@@ -141,43 +141,8 @@ layers:
   - ''
   - {type: held}
   MSE: ['', Back Click, Middle Click, Forward Click, '', '', Scroll ↑, Mouse ↑, '', '', Scroll ←, '$$phosphor:regular/mouse-left-click$$', Scroll ↓, '$$phosphor:regular/mouse-right-click$$',
-    Scroll →, '', Mouse ←, Mouse ↓, Mouse →, '', '', '', '', '', '', '', '', '', '', '', MSF, '$$phosphor:regular/mouse-left-click$$', '$$phosphor:regular/mouse-right-click$$',
-    Toggle MSE]
-  MSF:
-  - ''
-  - Back Click
-  - Middle Click
-  - Forward Click
-  - ''
-  - ''
-  - Scroll ↑↑
-  - Mouse ↑↑
-  - ''
-  - ''
-  - Scroll ←←
-  - $$phosphor:regular/mouse-left-click$$
-  - Scroll ↓↓
-  - $$phosphor:regular/mouse-right-click$$
-  - Scroll →→
-  - ''
-  - Mouse ←←
-  - Mouse ↓↓
-  - Mouse →→
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - {type: held}
-  - $$phosphor:regular/mouse-left-click$$
-  - $$phosphor:regular/mouse-right-click$$
-  - ''
+    Scroll →, '', Mouse ←, Mouse ↓, Mouse →, '', Ctrl/Cmd, '$$phosphor:regular/option$$', Cmd/Ctrl, '$$phosphor:regular/arrow-fat-up$$', '', '', '', '', '', '', '',
+    '$$phosphor:regular/mouse-left-click$$', '$$phosphor:regular/mouse-right-click$$', Toggle MSE]
 combos:
 - p: [12, 13]
   k: Delete
@@ -190,7 +155,7 @@ combos:
   l: [BASE]
 - p: [6, 7, 8]
   k: Scroll ↑
-  l: [BASE, MSE, MSF]
+  l: [BASE, MSE]
   a: top
   o: 0.4
 - p: [16, 17]
@@ -211,14 +176,14 @@ combos:
   o: 0.2
 - p: [26, 27, 28]
   k: Scroll ↓
-  l: [BASE, MSE, MSF]
+  l: [BASE, MSE]
   a: bottom
   o: 0.2
 - p: [0, 1]
   k: Esc
   l: [BASE]
 - p: [14, 15]
-  k: Soft Off
+  k: {t: Soft Off, h: Hold 3s}
   l: [FNC]
 - p: [2, 7]
   k: Show Batt
@@ -235,17 +200,17 @@ combos:
   l: [BASE]
   draw_separate: true
 - p: [23, 26]
-  k: Snake
+  k: {t: Snake, h: 400ms}
   l: [BASE]
-  a: top
-  o: 0.01
+  a: bottom
+  o: 0.2
 - p: [13, 16]
-  k: Kebab
+  k: {t: Kebab, h: 400ms}
   l: [BASE]
   a: top
   o: 0.1
 - p: [3, 6]
-  k: Camel
+  k: {t: Camel, h: 400ms}
   l: [BASE]
   a: top
   o: 0.1
@@ -261,4 +226,4 @@ combos:
   o: 0.2
 - p: [0, 1]
   k: Toggle MSE
-  l: [MSE, MSF]
+  l: [MSE]

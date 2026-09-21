@@ -192,9 +192,10 @@ parse_config:
     '&ind_con': Show Conn
     '&studio_unlock': Studio Unlock
     '&soft_off': Soft Off
-    '&case_snake': Snake
-    '&case_camel': Camel
-    '&case_kebab': Kebab
+    '&soft_off_hold 0 0': {t: Soft Off, h: Hold 3s}
+    '&case_snake_hold 0 0': {t: Snake, h: 400ms}
+    '&case_camel_hold 0 0': {t: Camel, h: 400ms}
+    '&case_kebab_hold 0 0': {t: Kebab, h: 400ms}
     '&os_sel OS_MAC': $$mdi:apple$$
     '&os_sel OS_LIN': $$mdi:penguin$$
     '&hml_outer 0 A': {t: A, h: '$$phosphor:regular/control$$'}
@@ -214,6 +215,10 @@ parse_config:
     '&hmr_del_line 0 0': {t: Del Line, h: '$$phosphor:regular/control$$'}
     '&ok_mod_outer': Ctrl/Cmd
     '&ok_mod_inner': Cmd/Ctrl
+    '&ok_copy': Copy
+    '&ok_cut': Cut
+    '&ok_paste': Paste
+    '&ok_screenshot': Screenshot
     '&ok_line_start': StartLn
     '&ok_prev_word': Prev Word
     '&ok_del_prev_word': Del Word
@@ -251,14 +256,6 @@ parse_config:
     '&mmv MOVE_DOWN': Mouse ↓
     '&mmv MOVE_LEFT': Mouse ←
     '&mmv MOVE_RIGHT': Mouse →
-    '&fmmv MOVE_UP': Mouse ↑↑
-    '&fmmv MOVE_DOWN': Mouse ↓↓
-    '&fmmv MOVE_LEFT': Mouse ←←
-    '&fmmv MOVE_RIGHT': Mouse →→
-    '&fmsc MOVE_UP': Scroll ↑↑
-    '&fmsc MOVE_DOWN': Scroll ↓↓
-    '&fmsc MOVE_LEFT': Scroll ←←
-    '&fmsc MOVE_RIGHT': Scroll →→
     '&msc MOVE_UP': Scroll ↑
     '&msc MOVE_DOWN': Scroll ↓
     '&msc MOVE_LEFT': Scroll ←
@@ -513,8 +510,8 @@ parse_config:
       a: top
       o: 0.1
     combo_snake_case:
-      a: top
-      o: 0.01
+      a: bottom
+      o: 0.2
     combo_kebab_case:
       a: top
       o: 0.1

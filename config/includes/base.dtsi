@@ -12,13 +12,13 @@
 #define NAV 2
 #define FNC 3
 #define MSE 4
-#define MSE_FAST 5
 
 #define MEH(k) LC(LA(LS(k)))
 #define MEH_MOD LA(LS(LCTRL))
 
 #include "mouse.dtsi"
 #include "oskey.dtsi"
+#include "hold-taps.dtsi"
 #include "combos.dtsi"
 
 &caps_word { continue-list = <UNDERSCORE BACKSPACE DELETE MINUS DEL N1 N2 N3 N4 N5 N6 N7 N8 N9 N0>; };
@@ -66,6 +66,14 @@
             #binding-cells = <0>;
             bindings = <&bt BT_CLR>;
         };
+
+        sys_soft_off: sys_soft_off {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            // Finish without a physical key release after the peripherals turn off.
+            tap-ms = <100>;
+            bindings = <&soft_off>;
+        };
     };
 
    cond_layers {
@@ -75,166 +83,6 @@
             if-layers = <SYM NAV>;
             then-layer = <FNC>;
         };
-    };
-
-    behaviors {
-        hmr: hmr {
-            compatible = "zmk,behavior-hold-tap";
-            bindings = <&kp>, <&kp>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <230>;
-            quick-tap-ms = <150>;
-            require-prior-idle-ms = <130>;
-            flavor = "balanced";
-            hold-trigger-key-positions = <KEYS_L THUMBS>;
-            hold-trigger-on-release;
-        };
-
-        hml: hml {
-            compatible = "zmk,behavior-hold-tap";
-            bindings = <&kp>, <&kp>;
-
-            #binding-cells = <2>;
-            tapping-term-ms = <230>;
-            quick-tap-ms = <155>;
-            require-prior-idle-ms = <130>;
-            flavor = "balanced";
-            hold-trigger-key-positions = <KEYS_R THUMBS>;
-            hold-trigger-on-release;
-        };
-
-        rth: rthumb {
-            compatible = "zmk,behavior-hold-tap";
-            bindings = <&mo>, <&kp>;
-            flavor = "hold-preferred";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick-tap-ms = <130>;
-        };
-
-        lth: lthumb {
-            compatible = "zmk,behavior-hold-tap";
-            bindings = <&mo>, <&kp>;
-            flavor = "hold-preferred";
-            #binding-cells = <2>;
-            tapping-term-ms = <230>;
-            quick-tap-ms = <140>;
-        };
-
-        hp: hold_priority {
-            compatible = "zmk,behavior-hold-tap";
-            bindings = <&kp>, <&kp>;
-            flavor = "hold-preferred";
-            #binding-cells = <2>;
-            tapping-term-ms = <230>;
-            quick-tap-ms = <150>;
-        };
-
-        lsm: left_shift_mode {
-            compatible = "zmk,behavior-hold-tap";
-            bindings = <&kp>, <&kp>;
-            flavor = "hold-preferred";
-            #binding-cells = <2>;
-            tapping-term-ms = <190>;
-            quick-tap-ms = <150>;
-            require-prior-idle-ms = <120>;
-            hold-trigger-key-positions = <KEYS_R LH0 RH0>;
-            //hold-trigger-on-release;
-        };
-
-        rsm: right_shift_mode {
-            compatible = "zmk,behavior-hold-tap";
-            bindings = <&kp>, <&kp>;
-            flavor = "hold-preferred";
-            #binding-cells = <2>;
-            tapping-term-ms = <190>;
-            quick-tap-ms = <150>;
-            require-prior-idle-ms = <130>;
-            hold-trigger-key-positions = <KEYS_L LH0 RH0>;
-            //hold-trigger-on-release;
-        };
-
-        f1_sys: f1_sys {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <3000>;
-            flavor = "tap-preferred";
-            bindings = <&sys_bt_0>, <&kp>;
-        };
-
-        f2_sys: f2_sys {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <3000>;
-            flavor = "tap-preferred";
-            bindings = <&bt_lin>, <&kp>;
-        };
-
-        f3_sys: f3_sys {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <3000>;
-            flavor = "tap-preferred";
-            bindings = <&sys_bt_2>, <&kp>;
-        };
-
-        f4_sys: f4_sys {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <3000>;
-            flavor = "tap-preferred";
-            bindings = <&sys_bt_3>, <&kp>;
-        };
-
-        f5_sys: f5_sys {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <3000>;
-            flavor = "tap-preferred";
-            bindings = <&sys_out_ble>, <&kp>;
-        };
-
-        f6_sys: f6_sys {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <3000>;
-            flavor = "tap-preferred";
-            bindings = <&sys_out_usb>, <&kp>;
-        };
-
-        f7_sys: f7_sys {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <3000>;
-            flavor = "tap-preferred";
-            bindings = <&studio_unlock>, <&kp>;
-        };
-
-        f10_sys: f10_sys {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <3000>;
-            flavor = "tap-preferred";
-            bindings = <&sys_bt_clear>, <&kp>;
-        };
-
-        f11_sys: f11_sys {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <3000>;
-            flavor = "tap-preferred";
-            bindings = <&sys_reset>, <&kp>;
-        };
-
-        f12_sys: f12_sys {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            tapping-term-ms = <3000>;
-            flavor = "tap-preferred";
-            bindings = <&bootloader>, <&kp>;
-        };
-
     };
 
     keymap {
@@ -291,9 +139,9 @@
 // ╭────────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────╮   ╭─────────────────┬─────────────────┬───────────────┬───────────────┬────────────────────╮
      &f1_sys 0 F1,         &f2_sys 0 F2,         &f3_sys 0 F3,         &f4_sys 0 F4,       &f5_sys 0 F5,           &f6_sys 0 F6,     &f7_sys 0 F7,   &kp F8,          &kp F9,          &f10_sys 0 F10, \
 // ├────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤   ├─────────────────┼─────────────────┼───────────────┼───────────────┼────────────────────┤
-     &kp LCTRL,            &kp LALT,             &kp LGUI,             &kp LSHFT,         &f11_sys 0 F11,           &f12_sys 0 F12,   &kp LSHFT,       &kp LGUI,        &kp LALT,        &kp LCTRL,       \
+     &ok_mod_outer,        &kp LALT,             &ok_mod_inner,        &kp LSHFT,         &f11_sys 0 F11,           &f12_sys 0 F12,   &kp LSHFT,       &ok_mod_inner,   &kp LALT,        &ok_mod_outer,   \
 // ├────────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤   ├─────────────────┼─────────────────┼───────────────┼───────────────┼────────────────────┤
-     &hp C_MUTE C_VOL_DN, &kp C_PREV,            &tog MSE,            &kp PSCRN,         &kp C_BRI_DN,            &kp C_BRI_UP,      &none,           &kp C_PP,        &kp C_NEXT,      &kp C_VOL_UP,    \
+     &kp C_VOL_DN,        &kp C_PREV,            &tog MSE,            &ok_screenshot,    &kp C_BRI_DN,            &kp C_BRI_UP,      &kp C_MUTE,      &kp C_PP,        &kp C_NEXT,      &kp C_VOL_UP,    \
 // ╰────────────────────┴────────────────────┴────────────────────┼────────────────────┼────────────────────┤   ├─────────────────┴─────────────────┴───────────────┴───────────────┴────────────────────╯
                                                 &trans,               &none,               &none,                  &none,            &none,           &trans         \
 //                                           ╰────────────────────┴────────────────────┴────────────────────╯   ╰─────────────────┴─────────────────┴────────────────╯
@@ -308,24 +156,9 @@
 // ├────────────────────┼───────────────┼────────────────────┼───────────────┼────────────────────┤   ├─────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤
      &msc SCRL_LEFT,      &mkp LCLK,        &msc SCRL_DOWN,     &mkp RCLK,     &msc SCRL_RIGHT,         &none,                &mmv MOVE_LEFT,     &mmv MOVE_DOWN,    &mmv MOVE_RIGHT,        &none,         \
 // ├────────────────────┼───────────────┼────────────────────┼───────────────┼────────────────────┤   ├─────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤
-     &none,               &none,            &none,              &none,         &none,                    &none,                &none,                 &none,         &none,                  &none,         \
+     &ok_mod_outer,       &kp LALT,         &ok_mod_inner,      &kp LSHFT,      &none,                    &none,                &none,                 &none,         &none,                  &none,         \
 // ╰────────────────────┴───────────────┴────────────────────┼───────────────┼────────────────────┤   ├─────────────────┴────────────────────┴────────────────────┴────────────────────┴────────────────────╯
-                                                &trans,         &mo MSE_FAST,  &mkp LCLK,               &mkp RCLK,            &tog MSE,              &trans       \
-//                                      ╰────────────────────┴───────────────┴────────────────────╯   ╰─────────────────┴────────────────────┴────────────────────╯
-         )>;
-        };
-
-        mouse_layer_fast {
-            display-name = "MSF";
-            bindings = <LAYER_FROM36( \
-// ╭────────────────────┬───────────────┬────────────────────┬───────────────┬────────────────────╮   ╭─────────────────┬────────────────────┬────────────────────┬────────────────────┬────────────────────╮
-     &none,               &mkp MB4,         &mkp MCLK,          &mkp MB5,      &none,                   &none,                &fmsc MOVE_UP,      &fmmv MOVE_UP,      &none,                 &none,         \
-// ├────────────────────┼───────────────┼────────────────────┼───────────────┼────────────────────┤   ├─────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤
-     &fmsc MOVE_LEFT,     &mkp LCLK,        &fmsc MOVE_DOWN,    &mkp RCLK,     &fmsc MOVE_RIGHT,        &none,                &fmmv MOVE_LEFT,    &fmmv MOVE_DOWN,   &fmmv MOVE_RIGHT,       &none,         \
-// ├────────────────────┼───────────────┼────────────────────┼───────────────┼────────────────────┤   ├─────────────────┼────────────────────┼────────────────────┼────────────────────┼────────────────────┤
-     &none,               &none,            &none,              &none,         &none,                    &none,                &none,                 &none,         &none,                  &none,         \
-// ╰────────────────────┴───────────────┴────────────────────┼───────────────┼────────────────────┤   ├─────────────────┴────────────────────┴────────────────────┴────────────────────┴────────────────────╯
-                                                &trans,         &trans,        &mkp LCLK,               &mkp RCLK,            &none,              &trans       \
+                                                &trans,         &none,         &mkp LCLK,               &mkp RCLK,            &tog MSE,              &trans       \
 //                                      ╰────────────────────┴───────────────┴────────────────────╯   ╰─────────────────┴────────────────────┴────────────────────╯
          )>;
         };
