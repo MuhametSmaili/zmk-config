@@ -52,7 +52,7 @@ This config uses a few external ZMK modules in addition to upstream ZMK itself.
 
 `FNC` is a tri-layer that appears when both `SYM` and `NAV` are active.
 
-System controls are intentionally hidden behind 3-second holds on function keys, so normal taps still send function keys while Bluetooth, reset, output, and Studio actions remain hard to trigger accidentally. Hold `F1`–`F4` for Bluetooth profiles 0–3, `F5` for BLE output, `F6` for USB output, `F7` for ZMK Studio unlock, `F10` to clear the current Bluetooth profile, `F11` to reset, and `F12` for the bootloader. Holding `F2` intentionally selects the Linux host (Bluetooth profile 1, shown as BT 2) **and** switches OS mode to Linux. Other profile selections leave OS mode unchanged; use the dedicated OS-selection combos when needed.
+System controls are hidden behind holds on function keys, so normal taps still send function keys. Hold `F5` for BLE output or `F6` for USB output for 500 ms (`OUTPUT_HOLD_MS` in `config/includes/hold-taps.dtsi`). Other system actions retain 3-second holds: `F1`–`F4` for Bluetooth profiles 0–3, `F7` for ZMK Studio unlock, `F10` to clear the current Bluetooth profile, `F11` to reset, and `F12` for the bootloader. Holding `F2` intentionally selects the Linux host (Bluetooth profile 1, shown as BT 2) **and** switches OS mode to Linux. Other profile selections leave OS mode unchanged; use the dedicated OS-selection combos when needed.
 
 For Soft Off, hold the `F11`+`F12` combo (base positions `G`+`H`) together for 3 seconds on `FNC`. Brief taps do nothing; the long hold powers off without needing a key release. Volume up/down repeat when held; mute has its own key on `FNC` at the base `M` position.
 

@@ -1,4 +1,5 @@
 #define CASE_HOLD_MS 400
+#define OUTPUT_HOLD_MS 500
 
 // Keep the literal # outside the function-like macro (CPP stringification).
 #define HOLD_TAP_CELLS #binding-cells
@@ -105,8 +106,8 @@
         SYSTEM_HOLD(f2_sys,  &bt_lin)
         SYSTEM_HOLD(f3_sys,  &sys_bt_2)
         SYSTEM_HOLD(f4_sys,  &sys_bt_3)
-        SYSTEM_HOLD(f5_sys,  &sys_out_ble)
-        SYSTEM_HOLD(f6_sys,  &sys_out_usb)
+        GUARDED_HOLD(f5_sys, &sys_out_ble, &kp, OUTPUT_HOLD_MS)
+        GUARDED_HOLD(f6_sys, &sys_out_usb, &kp, OUTPUT_HOLD_MS)
         SYSTEM_HOLD(f7_sys,  &studio_unlock)
         SYSTEM_HOLD(f10_sys, &sys_bt_clear)
         SYSTEM_HOLD(f11_sys, &sys_reset)
