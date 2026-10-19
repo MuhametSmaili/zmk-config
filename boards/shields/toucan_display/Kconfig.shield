@@ -1,0 +1,2 @@
+config SHIELD_TOUCAN_DISPLAY
+    def_bool $(shields_list_contains,toucan_display)

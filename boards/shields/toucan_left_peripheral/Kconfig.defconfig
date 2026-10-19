@@ -1,0 +1,12 @@
+if SHIELD_TOUCAN_LEFT_PERIPHERAL
+
+config ZMK_KEYBOARD_NAME
+    default "Toucan"
+
+config ZMK_SPLIT
+    default y
+
+config SPI
+    default y
+
+endif

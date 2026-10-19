@@ -1,0 +1,17 @@
+config ZMK_TOUCAN_STATUS
+    bool "Toucan2 display status"
+    default y
+    depends on DT_HAS_ZMK_BEHAVIOR_TOUCAN_STATUS_ENABLED
+
+config ZMK_TOUCAN_STATUS_RELAY
+    bool "Relay Toucan2 status to the peripheral screen"
+    default y if SHIELD_TOUCAN_DONGLE
+    depends on ZMK_TOUCAN_STATUS && ZMK_SPLIT_ROLE_CENTRAL && ZMK_SPLIT_BLE
+
+config ZMK_TOUCAN_SCREEN
+    bool "Toucan2 battery and connection screen"
+    default y if SHIELD_TOUCAN_DISPLAY
+    depends on ZMK_TOUCAN_STATUS && ZMK_DISPLAY
+    select LV_USE_LABEL
+    select LV_FONT_UNSCII_16
+    select LV_FONT_MONTSERRAT_24

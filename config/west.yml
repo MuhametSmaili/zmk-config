@@ -18,6 +18,11 @@ manifest:
     # OS-aware shortcut module
     - name: mentaldesk
       url-base: https://github.com/mentaldesk
+    # Toucan hardware, screen, and trackpad modules
+    - name: toucan
+      url-base: https://github.com/MuhametSmaili
+    - name: beekeeb
+      url-base: https://github.com/beekeeb
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -37,6 +42,15 @@ manifest:
       revision: main
     - name: oskey
       remote: mentaldesk
+      revision: main
+    - name: zmk-keyboard-toucan2
+      remote: toucan
+      revision: main
+    - name: zmk_driver_azoteq
+      remote: beekeeb
+      revision: main
+    - name: zmk-input-zoom
+      remote: beekeeb
       revision: main
   self:
     path: config

@@ -57,6 +57,25 @@ include:
     cmake-args: -DCONFIG_ZMK_SPLIT=y -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
     artifact-name: forager_right
 
+    # Toucan 36: RGB feedback on the XIAO dongle; screen and trackpad on the halves.
+  - board: xiao_ble//zmk
+    shield: toucan_dongle rgbled_adapter
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_SLEEP=n
+    artifact-name: toucan_dongle
+  - board: xiao_ble//zmk
+    shield: toucan_left_peripheral nice_view toucan_display
+    cmake-args: -DCONFIG_ZMK_SPLIT_ROLE_CENTRAL=n
+    artifact-name: toucan_left_peripheral
+  - board: xiao_ble//zmk
+    shield: toucan_left nice_view toucan_display
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
+    artifact-name: toucan_left_central
+  - board: xiao_ble//zmk
+    shield: toucan_right
+    artifact-name: toucan_right
+
     # Reset shields
   - board: nice_nano//zmk
     shield: settings_reset

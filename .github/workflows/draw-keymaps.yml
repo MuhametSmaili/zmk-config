@@ -7,6 +7,7 @@ on:
       - "config/*.keymap"
       - "config/*.dtsi"
       - "config/includes/*.dtsi"
+      - "config/hardware_layouts/**"
       - "tools/keymap-drawer/config.yaml"
 
 jobs:
@@ -18,4 +19,5 @@ jobs:
       keymap_patterns: 'config/*.keymap'
       config_path: tools/keymap-drawer/config.yaml
       output_folder: tools/keymap-drawer
+      draw_args: "toucan:'-d config/hardware_layouts/toucan.dtsi'"
       amend_commit: true

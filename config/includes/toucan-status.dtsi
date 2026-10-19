@@ -1,0 +1,9 @@
+/ {
+    behaviors {
+        // Short device name fits ZMK BLE's 9-byte (including NUL) wire field.
+        tstatus: tstatus {
+            compatible = "zmk,behavior-toucan-status";
+            #binding-cells = <2>;
+        };
+    };
+};

@@ -1,0 +1,32 @@
+// Toucan2-only automatic mouse layer. Keep the manual MSE layer independent.
+#define TPM 5
+#define TOUCAN_MOUSE_TIMEOUT_MS 1000
+#define TOUCAN_MOUSE_PRIOR_IDLE_MS 200
+
+/ {
+    input_processors {
+        zip_toucan_mouse_layer: zip_toucan_mouse_layer {
+            compatible = "zmk,input-processor-temp-layer";
+            #input-processor-cells = <2>;
+            require-prior-idle-ms = <TOUCAN_MOUSE_PRIOR_IDLE_MS>;
+            // Mouse buttons, scroll keys and modifiers must not cancel TPM.
+            // Normal typing and all thumbs do cancel it; their bindings below
+            // remain transparent so the underlying key/layer action is kept.
+            excluded-positions = <LT3 LT2 LT1 LM4 LM3 LM2 LM1 LM0 LB4 LB3 LB2 LB1>;
+        };
+    };
+
+    keymap {
+        // Repeat the compatible so keymap-drawer sees this separate fragment.
+        compatible = "zmk,keymap";
+        trackpad_mouse {
+            display-name = "TPM";
+            bindings = <LAYER_FROM36(
+                &trans, &mkp MB4,       &mkp MCLK,     &mkp MB5,  &trans,           &trans, &trans, &trans, &trans, &trans,
+                &msc SCRL_LEFT, &mkp RCLK, &msc SCRL_DOWN, &mkp LCLK, &msc SCRL_RIGHT, &trans, &trans, &trans, &trans, &trans,
+                &ok_mod_outer, &kp LALT, &ok_mod_inner, &kp LSHFT, &trans,           &trans, &trans, &trans, &trans, &trans,
+                                        &trans, &trans, &trans,                    &trans, &trans, &trans
+            )>;
+        };
+    };
+};
