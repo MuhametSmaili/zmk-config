@@ -1,0 +1,6 @@
+// The Toucan fork uses a 144x168 Sharp panel, not the standard 160x68 nice!view.
+// Keep its dimensions while reusing upstream nice_view's driver configuration.
+&nice_view {
+    width = <144>;
+    height = <168>;
+};

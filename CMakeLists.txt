@@ -1,0 +1,2 @@
+zephyr_include_directories(include)
+target_sources_ifdef(CONFIG_ZMK_TOUCAN_STATUS app PRIVATE src/toucan_status.c)

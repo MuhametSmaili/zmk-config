@@ -1,0 +1,71 @@
+// Match the hardware module's node paths and split-input ID. The halves retain
+// its device/pin definitions; the dongle creates only the virtual receiver.
+// Gesture bindings and tuning are from the working Toucan fork (MIT licensed).
+#include <dt-bindings/input/input-event-codes.h>
+
+// Keep pointer/gesture tuning identical when automatic activation is bypassed.
+#define TOUCAN_TRACKPAD_SCROLL_DIVISOR 40 // Was 20; halve trackpad-only scrolling.
+#define TOUCAN_TRACKPAD_PROCESSORS <&zip_xy_scaler 100 100>, <&zip_scroll_scaler 1 TOUCAN_TRACKPAD_SCROLL_DIVISOR>, \
+                                  <&zip_zoom_mapper>, <&swipe_button_mapper>
+
+/ {
+    input_processors {
+        zip_toucan_ignore_touch: zip_toucan_ignore_touch {
+            compatible = "zmk,input-processor-behaviors";
+            #input-processor-cells = <0>;
+            type = <INPUT_EV_KEY>;
+            // TPS43 reports contact separately from its real button gestures.
+            // ZMK's listener maps an unconsumed BTN_TOUCH to a held left click.
+            // Swallow contact down/up only; BTN_0/BTN_1 tap/drag clicks pass on.
+            codes = <INPUT_BTN_TOUCH>;
+            bindings = <&none>;
+        };
+
+        zip_zoom_mapper: zip_zoom_mapper {
+            compatible = "zmk,input-processor-zoom";
+            #input-processor-cells = <0>;
+            event-code = <INPUT_REL_MISC>;
+            sensitivity = <10>;
+            bindings = <&kp LG(MINUS)>, <&kp LG(EQUAL)>;
+            track-remainders;
+        };
+
+        swipe_button_mapper: swipe_button_mapper {
+            compatible = "zmk,input-processor-behaviors";
+            #input-processor-cells = <0>;
+            codes = <INPUT_BTN_NORTH INPUT_BTN_EAST INPUT_BTN_SOUTH INPUT_BTN_WEST>;
+            bindings = <&kp LC(LG(UP))>, <&kp LC(LG(RIGHT))>,
+                       <&kp LC(LG(DOWN))>, <&kp LC(LG(LEFT))>;
+        };
+    };
+
+    split_inputs {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        trackpad_split: trackpad_split@0 {
+            compatible = "zmk,input-split";
+            reg = <0>;
+        };
+    };
+
+    trackpad_listener: trackpad_listener {
+        compatible = "zmk,input-listener";
+        device = <&trackpad_split>;
+        // Do not override status: left enables this in the hardware overlay,
+        // right disables it, and the dongle's new listener defaults to enabled.
+        // TPM only changes left-hand mouse positions; all thumbs are transparent.
+        input-processors = <&zip_toucan_ignore_touch>,
+                           <&zip_toucan_mouse_layer TPM TOUCAN_MOUSE_TIMEOUT_MS>,
+                           TOUCAN_TRACKPAD_PROCESSORS;
+        /delete-node/ scroller;
+
+        manual_layers {
+            // Do not cover symbols/navigation/functions or the manual mouse
+            // layer with TPM. Listener overrides test active layers, so do not
+            // use BASE (the default layer is always active) as an allow-list.
+            layers = <SYM NAV FNC MSE>;
+            input-processors = <&zip_toucan_ignore_touch>, TOUCAN_TRACKPAD_PROCESSORS;
+        };
+    };
+};

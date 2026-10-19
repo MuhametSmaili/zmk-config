@@ -1,0 +1,6 @@
+#include "hardware_layouts/36-keys.h"
+#include "includes/base.dtsi"
+#include "hardware_layouts/toucan.dtsi"
+#include "includes/toucan-mouse.dtsi"
+#include "includes/toucan-pointing.dtsi"
+#include "includes/toucan-status.dtsi"

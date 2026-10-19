@@ -5,11 +5,25 @@ on:
       - main
     paths:
       - 'config/**'
+      - 'boards/**'
+      - 'src/**'
+      - 'include/**'
+      - 'dts/**'
+      - 'zephyr/**'
+      - 'CMakeLists.txt'
+      - 'Kconfig'
       - '.github/workflows/build.yml'
       - 'build.yaml'
   pull_request:
     paths:
       - 'config/**'
+      - 'boards/**'
+      - 'src/**'
+      - 'include/**'
+      - 'dts/**'
+      - 'zephyr/**'
+      - 'CMakeLists.txt'
+      - 'Kconfig'
       - '.github/workflows/build.yml'
       - 'build.yaml'
   workflow_dispatch:

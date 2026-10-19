@@ -1,0 +1,3 @@
+description: Internal Toucan2 screen status receiver over the existing split link
+compatible: "zmk,behavior-toucan-status"
+include: two_param.yaml
