@@ -110,8 +110,10 @@
         GUARDED_HOLD(f6_sys, &sys_out_usb, &kp, OUTPUT_HOLD_MS)
         SYSTEM_HOLD(f7_sys,  &studio_unlock)
         SYSTEM_HOLD(f10_sys, &sys_bt_clear)
-        SYSTEM_HOLD(f11_sys, &sys_reset)
-        SYSTEM_HOLD(f12_sys, &bootloader)
+        SYSTEM_HOLD(f11_sys, &bootloader) // left half: hold 3s = bootloader, tap = F11
+        SYSTEM_HOLD(f12_sys, &bootloader) // right half: hold 3s = bootloader, tap = F12
+        SYSTEM_HOLD(prev_reset, &sys_reset) // left half: hold 3s = reset, tap = media prev
+        SYSTEM_HOLD(next_reset, &sys_reset) // right half: hold 3s = reset, tap = media next
 
     };
 };

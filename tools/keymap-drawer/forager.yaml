@@ -120,21 +120,21 @@ layers:
   - $$phosphor:regular/option$$
   - Cmd/Ctrl
   - $$phosphor:regular/arrow-fat-up$$
-  - {t: F11, h: Reset}
+  - {t: F11, h: Boot}
   - {t: F12, h: Boot}
   - $$phosphor:regular/arrow-fat-up$$
   - Cmd/Ctrl
   - $$phosphor:regular/option$$
   - Ctrl/Cmd
   - $$mdi:volume-medium$$
-  - $$mdi:skip-backward$$
+  - {t: '$$mdi:skip-backward$$', h: Reset}
   - Toggle MSE
   - Screenshot
   - Bright -
   - Bright +
   - $$mdi:volume-off$$
   - $$mdi:play-pause$$
-  - $$mdi:skip-forward$$
+  - {t: '$$mdi:skip-forward$$', h: Reset}
   - $$mdi:volume-high$$
   - {type: held}
   - ''

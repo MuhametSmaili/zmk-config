@@ -961,7 +961,7 @@ use.phosphor\:regular\/control {
 <g transform="translate(270, 104)" class="key keypos-14">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
 <text x="0" y="0" class="key tap">F11</text>
-<text x="0" y="26" class="key hold">Reset</text>
+<text x="0" y="26" class="key hold">Boot</text>
 </g>
 <g transform="translate(450, 104)" class="key keypos-15">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
@@ -995,6 +995,7 @@ use.phosphor\:regular\/control {
 <g transform="translate(90, 157)" class="key keypos-21">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
 <use href="#mdi:skip-backward" xlink:href="#mdi:skip-backward" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:skip-backward"/>
+<text x="0" y="26" class="key hold">Reset</text>
 </g>
 <g transform="translate(150, 150)" class="key keypos-22">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
@@ -1029,6 +1030,7 @@ use.phosphor\:regular\/control {
 <g transform="translate(630, 157)" class="key keypos-28">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
 <use href="#mdi:skip-forward" xlink:href="#mdi:skip-forward" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:skip-forward"/>
+<text x="0" y="26" class="key hold">Reset</text>
 </g>
 <g transform="translate(690, 172)" class="key keypos-29">
 <rect rx="6" ry="6" x="-28" y="-28" width="56" height="56" class="key"/>
