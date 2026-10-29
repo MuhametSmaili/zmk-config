@@ -23,6 +23,9 @@ manifest:
       url-base: https://github.com/MuhametSmaili
     - name: beekeeb
       url-base: https://github.com/beekeeb
+    # Halcyon dongle board
+    - name: splitkb
+      url-base: https://github.com/splitkb
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -51,6 +54,9 @@ manifest:
       revision: main
     - name: zmk-input-zoom
       remote: beekeeb
+      revision: main
+    - name: zmk-halcyon-module
+      remote: splitkb
       revision: main
   self:
     path: config

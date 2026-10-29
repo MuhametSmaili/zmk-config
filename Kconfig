@@ -1,3 +1,18 @@
+# splitkb's Halcyon dongle board defconfig sets these options, which only
+# exist in splitkb's ZMK fork. Define them here so the board builds against
+# upstream ZMK. The values are inert: upstream still advertises BLE profiles
+# and starts external power on. The prompts are needed because Kconfig rejects
+# assignments to symbols that are not user-configurable.
+config ZMK_EXT_POWER_START
+    bool "Compatibility: splitkb Halcyon external power start"
+    default y
+    depends on BOARD_HALCYON_DONGLE_NRF52840_ZMK
+
+config ZMK_BLE_PROFILE_ADVERTISING
+    bool "Compatibility: splitkb Halcyon BLE profile advertising"
+    default y
+    depends on BOARD_HALCYON_DONGLE_NRF52840_ZMK
+
 config ZMK_TOUCAN_STATUS
     bool "Toucan2 display status"
     default y

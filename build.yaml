@@ -19,8 +19,8 @@ include:
     artifact-name: sweep_dongle
 
     # Urchin
-  - board: xiao_ble//zmk
-    shield: urchin_dongle rgbled_adapter
+  - board: halcyon_dongle//zmk
+    shield: urchin_dongle
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y
     artifact-name: urchin_dongle
@@ -83,3 +83,6 @@ include:
   - board: xiao_ble//zmk
     shield: settings_reset
     artifact-name: settings_reset_xiao_ble
+  - board: halcyon_dongle//zmk
+    shield: settings_reset
+    artifact-name: settings_reset_halcyon_dongle
